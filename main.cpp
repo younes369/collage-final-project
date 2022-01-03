@@ -13,17 +13,18 @@ int main() {
 	Hotel HotelName;
 	Rooms room1,room2,room3;
 	int state =0, c = 0;
-	room1.roomNumber = 55;
-	room1.Availability = true;
-	room1.roomType = "single";
-	room2.roomNumber = 54;
-	room2.Availability = true;
-	room2.roomType = "single";
-	room3.roomNumber = 53;
-	room3.Availability = true;
-	room3.roomType = "single";
-	HotelName.room.push_back(room1);
-	HotelName.room.push_back(room2);
+    fstream roomsData;
+    roomsData.open("roomsData.txt", ios::in);
+    if (roomsData.is_open())
+    {
+        string line;
+        while (getline(roomsData,line))
+        {
+            cout<<line<<endl;
+        }
+        
+    }
+    
 	HotelName.room.push_back(room3);
 	do
 	{
