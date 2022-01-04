@@ -27,5 +27,6 @@ public:
 
     Client Registration();
     void Booking(Client& TempClient);
-    void canclling(Client& TempClient);
+	void RoomService(Client& TempClient);
+    void Canclling(Client& TempClient);
 };

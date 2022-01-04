@@ -48,7 +48,7 @@
 				cout<<"invalid input, please try again \n"; 
 				continue;
 			}	
-			TempClient.id = gen_random(5);
+			TempClient.id = gen_random(10);
 			clients.push_back(TempClient);
 			RegistrationDone = true;
 		} while (!RegistrationDone);
@@ -59,14 +59,19 @@
 	void Hotel::Booking(Client& TempClient){
 		string Broom;
 		bool Done = false;
-
+		int checker = 0;
+			
 
 			do
 			{
 				for(int i =0; i< room.size(); i++ ){
-					if(room[i].Availability == true)
+					if(room[i].Availability == true){
 					cout<< room[i].roomNumber <<"  "<<room[i].roomType << endl;
+					checker++;
+					}
 				}
+				if (checker > 0)
+				{
 				cout<<"please enter the room number you wish to book. \n";
 				cin>> Broom;
                 if(!check_number( Broom)){
@@ -100,6 +105,12 @@
 					}	
 				}
 				cout<<"you entered an inavlid room number \n";
+
+				}else{
+					cout <<"all the rooms are reserved for now, please come again later\n";
+					Done = true;
+				}
+				
 			} while (!Done);
 
 
@@ -107,7 +118,13 @@
 		
 	}
 	
-	void Hotel::canclling(Client& TempClient){
+	void Hotel::RoomService(Client& TempClient){
+
+		cout<<"room service will be in its way Mr. "<<TempClient.name<<endl;
+	}
+
+
+	void Hotel::Canclling(Client& TempClient){
 		for (int j = 0; j < clients.size(); j++){
 			if(clients[j].id == TempClient.id){
 				clients[j].bookedRoom = "0";

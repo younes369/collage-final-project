@@ -12,6 +12,9 @@ int main() {
 	Client TempClient;
 	Hotel HotelName;
 	Rooms room1,room2,room3;
+	room3.Availability=true;
+	room3.roomNumber=3;
+	room3.roomType="single";
 	int state =0, c = 0;
     fstream roomsData;
     roomsData.open("roomsData.txt", ios::in);
@@ -42,7 +45,7 @@ int main() {
 		if (state == 1){
 			TempClient = HotelName.Registration();
 			HotelName.Booking(TempClient);
-		}else if (state == 2)
+		} if (state == 2)
 		{
 			cout<<"name: " << TempClient.name << "\n"<<"ID: "<<TempClient.ID << "\n" <<"staying time: "<< TempClient.stayingTime <<" days"<< "\n" <<"phone number: "<< TempClient.number << "\n" <<"booked room : "<< TempClient.bookedRoom<< "\n" <<"age : "<< TempClient.age<<" years" <<endl;
 			for(int i =0; i< HotelName.room.size(); i++ ){
@@ -51,20 +54,27 @@ int main() {
 				}
 			}
 
-		}else if (state == 4){
-			HotelName.canclling(TempClient);
 		}
+		if (state == 3){
+			HotelName.RoomService(TempClient);
+		}
+		if (state == 4){
+			HotelName.Canclling(TempClient);
+		}
+		
 
 			
 		c++;
 		
 	} while (state != 5);
 
+	cout<<"----Room Number----"<<"----Room Type----"<<"----Room Availability----"<<endl;
 	for(int i =0; i< HotelName.room.size(); i++ ){
-		cout<< HotelName.room[i].roomNumber <<"  "<<HotelName.room[i].roomType <<"  " <<HotelName.room[i].Availability<< endl;
+		cout<<"|"<< HotelName.room[i].roomNumber <<"                |"<<HotelName.room[i].roomType <<"          |" <<HotelName.room[i].Availability<< endl;
 	}
+	cout<<"----Client's Name----"<<"----Booked Room----"<<"----Client's ID----"<<endl;
 	for(int i =0; i< HotelName.clients.size(); i++ ){
-		cout<< HotelName.clients[i].name <<"  "<<HotelName.clients[i].bookedRoom <<"  " <<HotelName.clients[i].id<< endl;
+		cout<<"|"<< HotelName.clients[i].name <<"             |"<<HotelName.clients[i].bookedRoom <<"          |" <<HotelName.clients[i].id<< endl;
 	}
 
 	time_t t = std::time(0);
