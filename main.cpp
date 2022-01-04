@@ -11,35 +11,37 @@ using namespace std;
 int main() {
 	Client TempClient;
 	Hotel HotelName;
-	Rooms room1,room2,room3;
-	room3.Availability=true;
-	room3.roomNumber=3;
-	room3.roomType="single";
-	int state =0, c = 0;
-    fstream roomsData;
-    roomsData.open("roomsData.txt", ios::in);
+	Rooms room;
+	int state =0, c = 0,x,y;
+	string line;
+    ifstream roomsData;
+    roomsData.open("roomsData.txt");
     if (roomsData.is_open())
     {
-        string line;
-        while (getline(roomsData,line))
+        while (!roomsData.eof())
         {
-            cout<<line<<endl;
+			roomsData >> x;
+			room.roomNumber = x;
+			roomsData>> line;
+			room.roomType = line;
+			roomsData>> y;
+			room.Availability=y;
+			HotelName.room.push_back(room);
         }
         
     }
-    
-	HotelName.room.push_back(room3);
+    roomsData.close();
 	do
 	{
 		if (c == 0)
 		{
-			cout<<"welcome to our hotel!\n 1.if you are ready to registrare please press 1\n 2.if you want to exite press 2 \n";
+			cout<<"welcome to our hotel!\n1.if you are ready to registrare please press 1\n2.if you want to exite press 2 \n";
 			cin>> state;
 			if(state == 2)
 				break;
 				
 		}else{
-			cout<<"welcome to our hotel!\n 1.if you are ready to make a new registrare please press 1\n 2.if you want to check your profile please press 2\n 3.if you want to ask for room service plese press 3 \n 4.if you want to cancel your room press 4 \n 5.if you want to exite press 5\n";
+			cout<<"welcome to our hotel!\n1.if you are ready to make a new registrare please press 1\n2.if you want to check your profile please press 2\n3.if you want to ask for room service plese press 3 \n4.if you want to cancel your room press 4 \n5.if you want to exite press 5\n";
 			cin>> state;
 		}
 		if (state == 1){

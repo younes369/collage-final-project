@@ -1,5 +1,7 @@
 #include "hotel.h"
 #include <iostream>
+using namespace std;
+
 
 	Client Hotel::Registration(){
 		Client TempClient;
@@ -44,7 +46,7 @@
 			}
 			cout<< "please enter the dauration you staying with us(In days):  ";
 			cin>> TempClient.stayingTime;
-            if(!check_number( TempClient.age)){
+            if(!check_number( TempClient.stayingTime)){
 				cout<<"invalid input, please try again \n"; 
 				continue;
 			}	
@@ -64,9 +66,10 @@
 
 			do
 			{
+				cout<<"----Room Number----"<<"----Room Type----"<<endl;
 				for(int i =0; i< room.size(); i++ ){
 					if(room[i].Availability == true){
-					cout<< room[i].roomNumber <<"  "<<room[i].roomType << endl;
+					cout<<"|" <<room[i].roomNumber <<"|                       "<<room[i].roomType<< endl;
 					checker++;
 					}
 				}
